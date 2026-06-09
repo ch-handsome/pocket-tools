@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy 🔧
         run: |
-          pnpm install --no-frozen-lockfile --ignore-scripts --no-strict-supply-chain
+          pnpm install --no-frozen-lockfile --ignore-scripts
           pnpm rebuild esbuild
           pnpm build
           cd dist
