@@ -49,6 +49,62 @@
   }
 }
 
+/* ===== Tool Accent Colors (HSL) ===== */
+:root {
+  --accent-color: 199 89% 48%;
+  --accent-text: 199 89% 48%;
+  --accent-bg: 199 89% 48% / 0.1;
+  --accent-border: 199 89% 48% / 0.2;
+  --accent-ring: 199 89% 48% / 0.3;
+}
+
+/* ===== Page Entrance Animation ===== */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up { animation: fade-in-up 0.5s ease-out both; }
+
+/* ===== Staggered card entrance ===== */
+.card-stagger > * { opacity: 0; animation: fade-in-up 0.4s ease-out forwards; }
+.card-stagger > *:nth-child(1) { animation-delay: 0ms; }
+.card-stagger > *:nth-child(2) { animation-delay: 60ms; }
+.card-stagger > *:nth-child(3) { animation-delay: 120ms; }
+.card-stagger > *:nth-child(4) { animation-delay: 180ms; }
+.card-stagger > *:nth-child(5) { animation-delay: 240ms; }
+.card-stagger > *:nth-child(6) { animation-delay: 300ms; }
+.card-stagger > *:nth-child(7) { animation-delay: 360ms; }
+.card-stagger > *:nth-child(8) { animation-delay: 420ms; }
+
+/* ===== Hero gradient ===== */
+.hero-gradient { background: linear-gradient(135deg, hsl(199 89% 48% / 0.08), hsl(160 84% 39% / 0.08)); }
+
+/* ===== Card hover lift ===== */
+.card-hover { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+.card-hover:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -8px hsl(0 0% 0% / 0.08); }
+
+/* ===== Glass header ===== */
+.glass-header {
+  background: hsl(var(--background) / 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid hsl(var(--border) / 0.5);
+}
+
+/* ===== Smooth theme transition ===== */
+.theme-transition, .theme-transition *, .theme-transition *::before, .theme-transition *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease, stroke 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+/* ===== Theme Toggle Rotation ===== */
+@keyframes spin-once {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-spin-once {
+  animation: spin-once 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @layer base {
   * {
     @apply border-border;

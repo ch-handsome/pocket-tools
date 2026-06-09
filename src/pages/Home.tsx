@@ -1,23 +1,41 @@
 import { Link } from "react-router-dom"
 import { ALL_TOOLS } from "@/lib/tool-config"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel"
+
+function getGreeting() {
+  const h = new Date().getHours()
+  if (h >= 5 && h < 9) return "早上好"
+  if (h >= 9 && h < 12) return "上午好"
+  if (h >= 12 && h < 14) return "中午好"
+  if (h >= 14 && h < 18) return "下午好"
+  return "晚上好"
+}
 
 export default function Home() {
   return (
     <div className="space-y-8 animate-fade-in-up">
-      {/* Hero Section */}
-      <div className="hero-gradient rounded-2xl px-6 py-10 sm:py-14 sm:px-10 text-center">
-        <div className="flex items-center justify-center gap-3 mb-3">
-          <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-gradient-to-br from-sky-500 to-cyan-400 flex items-center justify-center shadow-md -rotate-[15deg] shrink-0">
-            <span className="text-white text-lg sm:text-xl font-bold">P</span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            {import.meta.env.VITE_APP_TITLE || "Pocket Tools"}
-          </h1>
-        </div>
-        <p className="text-muted-foreground max-w-md mx-auto text-sm sm:text-base">
-          {import.meta.env.VITE_APP_DESCRIPTION || "精选开发工具集合，快速完成日常任务"}
-        </p>
-      </div>
+      {/* Hero Carousel */}
+      <Carousel
+        className="hero-gradient rounded-2xl px-6 py-10 sm:py-14 sm:px-10 text-center"
+      >
+        <CarouselContent>
+          <CarouselItem>
+            <div className="flex flex-col items-center">
+              <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight mb-3">
+                {getGreeting()}，今天用什么工具？
+              </h2>
+              <p className="text-muted-foreground max-w-md mx-auto text-sm sm:text-base">
+                {import.meta.env.VITE_APP_DESCRIPTION || "精选开发工具集合，快速完成日常任务"}
+              </p>
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+
+      </Carousel>
 
       {/* Tool Cards Grid */}
       <div className="card-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-3 sm:gap-4">

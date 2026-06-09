@@ -1,20 +1,14 @@
-import { Link, useLocation, Outlet } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import moonSvg from "@/assets/svg/moon.svg";
-import sunSvg from "@/assets/svg/sun.svg";
+import { Link, Outlet } from "react-router-dom";
+import moonImg from "@/assets/images/moon.png";
+import sunImg from "@/assets/images/sun.png";
+import logoImg from "@/assets/images/logo.png";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useState, useCallback } from "react";
-import { getToolConfig } from "@/lib/tool-config";
 
 export function Layout() {
   const { theme, setTheme } = useTheme();
-  const location = useLocation();
-  const isHome = location.pathname === "/";
   const [spinning, setSpinning] = useState(false);
-
-  // Get tool config for current page (if not home)
-  const toolConfig = !isHome ? getToolConfig(location.pathname) : null;
 
   const toggleTheme = useCallback(() => {
     setSpinning(true);
@@ -23,45 +17,19 @@ export function Layout() {
   }, [theme, setTheme]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex h-screen flex-col">
       {/* Glass Header */}
       <header className="glass-header sticky top-0 z-50">
-        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
-          {/* Left: Back button + Logo */}
-          <div className="flex items-center gap-2">
-            {!isHome && (
-              <Button variant="ghost" size="icon" asChild className="shrink-0">
-                <Link to="/">
-                  <ArrowLeft className="h-4 w-4" />
-                </Link>
-              </Button>
-            )}
-            <Link to="/" className="flex items-center gap-2.5 group">
-              {/* Gradient logo icon */}
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-sky-500 to-cyan-400 flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow -rotate-[15deg]">
-                <span className="text-white text-sm font-bold">P</span>
-              </div>
-              <span className="font-semibold text-lg hidden sm:block">
-                {import.meta.env.VITE_APP_TITLE || "Pocket Tools"}
-              </span>
+        <div className="mx-auto flex h-14 max-w-6xl items-center px-4 sm:px-6">
+          {/* Left: Logo */}
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center">
+              <img src={logoImg} className="h-6 w-auto" />
             </Link>
           </div>
 
-          {/* Center/Right: Page indicator + Theme toggle */}
-          <div className="flex items-center gap-3">
-            {toolConfig && (
-              <div
-                className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium"
-                style={{
-                  backgroundColor: `hsl(${toolConfig.hue} ${toolConfig.sat}% ${toolConfig.light}% / 0.1)`,
-                  color: `hsl(${toolConfig.hue} ${toolConfig.sat}% ${toolConfig.light}%)`,
-                }}
-              >
-                <toolConfig.icon className="h-3.5 w-3.5" />
-                {toolConfig.title}
-              </div>
-            )}
-
+          {/* Right: Theme toggle */}
+          <div className="ml-auto flex items-center gap-3">
             <Button
               variant="ghost"
               size="icon"
@@ -70,9 +38,9 @@ export function Layout() {
               aria-label="切换主题"
             >
               <img
-                src={theme === "dark" ? sunSvg : moonSvg}
+                src={theme === "dark" ? sunImg : moonImg}
                 alt=""
-                className="h-8 w-8 select-none pointer-events-none"
+                className="h-5 w-5 select-none pointer-events-none"
                 aria-hidden="true"
               />
             </Button>
@@ -81,8 +49,10 @@ export function Layout() {
       </header>
 
       {/* Main Content */}
-      <main className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-8">
-        <Outlet />
+      <main className="min-h-0 flex-1 overflow-y-auto scrollbar-hide">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-8">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
