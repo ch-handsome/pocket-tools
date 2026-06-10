@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createHashRouter } from "react-router-dom"
 import { Layout } from "@/layout/index.tsx"
 import Home from "@/pages/Home"
 import ColorTool from "@/pages/ColorTool"
@@ -10,7 +10,7 @@ import ImageCompressTool from "@/pages/ImageCompressTool"
 import PasswordTool from "@/pages/PasswordTool"
 import BaseConverterTool from "@/pages/BaseConverterTool"
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     element: <Layout />,
     children: [
