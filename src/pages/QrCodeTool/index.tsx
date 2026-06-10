@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback } from "react"
 import { QrCode, Download } from "lucide-react"
 import { ToolLayout } from "@/layout/tool-layout"
 import { Input } from "@/components/ui/input"
@@ -34,16 +34,10 @@ export default function QrCodeTool() {
         },
       })
       setQrDataUrl(url)
-    } catch (e) {
+    } catch {
       setError("生成二维码失败")
     }
   }, [text, size])
-
-  useEffect(() => {
-    if (text.trim()) {
-      generateQR()
-    }
-  }, [size, generateQR, text])
 
   const handleDownload = useCallback(() => {
     if (!qrDataUrl) return

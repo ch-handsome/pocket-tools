@@ -1,6 +1,6 @@
 import { Palette } from "lucide-react"
 import { ToolLayout } from "@/layout/tool-layout"
-import { useState, useCallback, useEffect } from "react"
+import { useState, useCallback } from "react"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
@@ -80,19 +80,6 @@ export default function ColorTool() {
     }
   }
 
-  // Keep in sync when r/g/b all valid
-  useEffect(() => {
-    const rn = parseInt(r, 10)
-    const gn = parseInt(g, 10)
-    const bn = parseInt(b, 10)
-    if (!isNaN(rn) && !isNaN(gn) && !isNaN(bn)) {
-      const cr = clamp(rn, 0, 255)
-      const cg = clamp(gn, 0, 255)
-      const cb = clamp(bn, 0, 255)
-      setHex(rgbToHex(cr, cg, cb))
-    }
-  }, [r, g, b])
-
   const currentRgb = hexToRgb(hex)
   const lum = currentRgb
     ? getLuminance(currentRgb.r, currentRgb.g, currentRgb.b)
@@ -105,21 +92,6 @@ export default function ColorTool() {
 
   return (
     <ToolLayout icon={Palette} title="颜色工具" description="颜色选择器 · HEX/RGB互转 · 对比度检测">
-      {/* Color Preview */}
-      <div
-        className="h-32 rounded-xl border flex items-center justify-center text-2xl font-bold transition-colors"
-        style={{ backgroundColor: hex }}
-      >
-        <span
-          style={{
-            color:
-              whiteContrast > blackContrast ? "#FFFFFF" : "#000000",
-          }}
-        >
-          {hex}
-        </span>
-      </div>
-
       <div className="grid gap-6 md:grid-cols-2">
         {/* HEX Input */}
         <Card>

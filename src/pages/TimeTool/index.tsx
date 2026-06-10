@@ -53,7 +53,6 @@ export default function TimeTool() {
 
   // Date to Timestamp
   const [dateInput, setDateInput] = useState("")
-  const [dateOutput, setDateOutput] = useState("")
 
   // Countdown
   const [targetDate, setTargetDate] = useState("")
@@ -66,7 +65,7 @@ export default function TimeTool() {
   const [cities, setCities] = useState(DEFAULT_CITIES)
   const [newCityName, setNewCityName] = useState("")
   const [newCityTz, setNewCityTz] = useState("")
-  const [now, setNow] = useState(Date.now())
+  const [now, setNow] = useState(() => Date.now())
 
   // Tick world clock
   useEffect(() => {
@@ -74,19 +73,13 @@ export default function TimeTool() {
     return () => clearInterval(timer)
   }, [])
 
-  // Auto-convert date to timestamp
-  useEffect(() => {
-    if (!dateInput) {
-      setDateOutput("")
-      return
-    }
+  // Derive dateOutput from dateInput during render instead of using state + effect
+  const dateOutput = (() => {
+    if (!dateInput) return ""
     const d = new Date(dateInput)
-    if (isNaN(d.getTime())) {
-      setDateOutput("无效日期")
-      return
-    }
-    setDateOutput(`秒: ${Math.floor(d.getTime() / 1000)}\n毫秒: ${d.getTime()}`)
-  }, [dateInput])
+    if (isNaN(d.getTime())) return "无效日期"
+    return `秒: ${Math.floor(d.getTime() / 1000)}\n毫秒: ${d.getTime()}`
+  })()
 
   // Countdown logic
   useEffect(() => {

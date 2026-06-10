@@ -1,14 +1,14 @@
 import { createHashRouter } from "react-router-dom"
 import { Layout } from "@/layout/index.tsx"
-import Home from "@/pages/Home"
-import ColorTool from "@/pages/ColorTool"
-import TextTool from "@/pages/TextTool"
-import TimeTool from "@/pages/TimeTool"
-import QrCodeTool from "@/pages/QrCodeTool"
-import JsonTool from "@/pages/JsonTool"
-import ImageCompressTool from "@/pages/ImageCompressTool"
-import PasswordTool from "@/pages/PasswordTool"
-import BaseConverterTool from "@/pages/BaseConverterTool"
+import Home from "@/pages/Home/index"
+import ColorTool from "@/pages/ColorTool/index"
+import TextTool from "@/pages/TextTool/index"
+import TimeTool from "@/pages/TimeTool/index"
+import QrCodeTool from "@/pages/QrCodeTool/index"
+import JsonTool from "@/pages/JsonTool/index"
+import ImageCompressTool from "@/pages/ImageCompressTool/index"
+import PasswordTool from "@/pages/PasswordTool/index"
+import BaseConverterTool from "@/pages/BaseConverterTool/index"
 
 const router = createHashRouter([
   {

@@ -57,7 +57,7 @@ export default function ImageCompressTool() {
       setCompressedFile(compressed)
       setCompressedSize(compressed.size)
       setCompressedUrl(URL.createObjectURL(compressed))
-    } catch (e) {
+    } catch {
       alert("压缩失败，请重试")
     } finally {
       setCompressing(false)
