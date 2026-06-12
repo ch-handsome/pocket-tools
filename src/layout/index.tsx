@@ -5,22 +5,30 @@ import logoImg from "@/assets/images/logo.png";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useState, useCallback } from "react";
+import { useAppDispatch } from "@/store";
+import { setDark } from "@/store/app";
 
 export function Layout() {
   const { theme, setTheme } = useTheme();
   const [spinning, setSpinning] = useState(false);
 
+   const dispatch = useAppDispatch();
+
   const toggleTheme = useCallback(() => {
+    const next = theme === "dark" ? "light" : "dark";
     setSpinning(true);
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(next);
+    const isDark = next === "dark";
+    localStorage.setItem("isDark", JSON.stringify(isDark));
+    dispatch(setDark(isDark));
     setTimeout(() => setSpinning(false), 500);
-  }, [theme, setTheme]);
+  }, [theme, setTheme, dispatch]);
 
   return (
     <div className="flex h-screen flex-col">
       {/* Glass Header */}
       <header className="glass-header sticky top-0 z-50">
-        <div className="mx-auto flex h-14 max-w-6xl items-center px-4 sm:px-6">
+        <div className="mx-auto flex h-14 max-w-full items-center px-4 sm:px-6">
           {/* Left: Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
@@ -50,7 +58,7 @@ export function Layout() {
 
       {/* Main Content */}
       <main className="min-h-0 flex-1 overflow-y-auto scrollbar-hide">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-6 sm:py-8">
+        <div className="mx-auto max-w-full px-4 sm:px-6 py-6 sm:py-8">
           <Outlet />
         </div>
       </main>

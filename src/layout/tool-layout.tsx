@@ -16,7 +16,7 @@ export function ToolLayout({ icon: Icon, title, description, children }: ToolLay
 
   return (
     <div
-      className="space-y-6 max-w-3xl mx-auto animate-fade-in-up"
+      className="space-y-6 w-full mx-auto animate-fade-in-up"
       style={{
         "--accent-color": accent,
         "--accent-bg": `${accent} / 0.1`,
