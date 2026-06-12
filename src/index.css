@@ -83,6 +83,119 @@
 .card-hover { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
 .card-hover:hover { transform: translateY(-3px); box-shadow: 0 12px 24px -8px hsl(0 0% 0% / 0.08); }
 
+/* ===== Card top accent bar ===== */
+.card-top-accent { position: relative; overflow: hidden; }
+.card-top-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: hsl(var(--accent-color));
+  z-index: 1;
+}
+
+/* ===== Icon gradient background ===== */
+.icon-gradient-bg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.icon-gradient-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  transform: translateX(-100%);
+}
+.icon-gradient-bg:hover::after {
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ===== Glass search bar ===== */
+.glass-search {
+  background: hsl(var(--muted) / 0.6);
+  border: 1px solid hsl(var(--border) / 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.glass-search:focus-within {
+  border-color: hsl(var(--accent-color) / 0.4);
+  box-shadow: 0 0 0 2px hsl(var(--accent-color) / 0.1);
+}
+
+/* ===== Hero section — abstract geometric ===== */
+.hero-section {
+  background: #f8f5ff;
+}
+
+.dark .hero-section {
+  background: linear-gradient(135deg, #1a1625 0%, #16112e 50%, #1a1625 100%);
+  border: 1px solid rgba(167, 139, 250, 0.08);
+}
+
+.dark .hero-section h2 {
+  color: #e8e0f0 !important;
+}
+
+.dark .hero-section p {
+  color: #a78bfa !important;
+}
+
+.dark .hero-section button {
+  background: #7c3aed !important;
+  box-shadow: 0 2px 16px rgba(124, 58, 237, 0.25) !important;
+}
+
+/* ===== Typewriter cursor blink ===== */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.typewriter-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 1.1em;
+  background: #2e1065;
+  margin-left: 3px;
+  vertical-align: text-bottom;
+  transition: opacity 0.1s;
+  border-radius: 1px;
+}
+.typewriter-cursor.blink {
+  animation: cursor-blink 0.8s step-end infinite;
+}
+
+.dark .typewriter-cursor {
+  background: #d8b4fe;
+}
+
+/* ===== Decorative blob ===== */
+.deco-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ===== Glass back button ===== */
+.glass-btn {
+  background: hsl(0 0% 100% / 0.15);
+  border: 1px solid hsl(0 0% 100% / 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.glass-btn:hover {
+  background: hsl(0 0% 100% / 0.25);
+}
+
+/* ===== Nav pill active ===== */
+.nav-pill {
+  transition: all 0.2s ease;
+}
+
 /* ===== Glass header ===== */
 .glass-header {
   background: hsl(var(--background) / 0.7);
@@ -91,7 +204,6 @@
   border-bottom: 1px solid hsl(var(--border) / 0.5);
 }
 
-/* ===== Smooth theme transition ===== */
 /* ===== Smooth theme transition ===== */
 .theme-transition, .theme-transition *, .theme-transition *::before, .theme-transition *::after {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease, stroke 0.3s ease, box-shadow 0.3s ease !important;

@@ -11,8 +11,7 @@ import { setDark } from "@/store/app";
 export function Layout() {
   const { theme, setTheme } = useTheme();
   const [spinning, setSpinning] = useState(false);
-
-   const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const toggleTheme = useCallback(() => {
     const next = theme === "dark" ? "light" : "dark";
@@ -26,39 +25,40 @@ export function Layout() {
 
   return (
     <div className="flex h-screen flex-col">
-      {/* Glass Header */}
-      <header className="glass-header sticky top-0 z-50">
-        <div className="mx-auto flex h-14 max-w-full items-center px-4 sm:px-6">
-          {/* Left: Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center">
-              <img src={logoImg} className="h-6 w-auto" />
-            </Link>
-          </div>
+      {/* Light Glass Header */}
+      <header className="sticky top-0 z-50 bg-background/70 backdrop-blur-xl border-b border-border/50">
+        <div className="mx-auto flex h-14 max-w-full items-center justify-between px-4 sm:px-6 gap-3">
+          {/* Logo */}
+          <Link to="/" className="flex items-center shrink-0">
+            <img src={logoImg} className="h-6 w-auto" alt="Pocket Tools" />
+          </Link>
 
-          {/* Right: Theme toggle */}
-          <div className="ml-auto flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className={`h-10 w-10 rounded-full hover:scale-110 active:scale-95 transition-all duration-300 ease-out ${spinning ? "animate-spin-once" : ""}`}
-              aria-label="切换主题"
-            >
-              <img
-                src={theme === "dark" ? sunImg : moonImg}
-                alt=""
-                className="h-5 w-5 select-none pointer-events-none"
-                aria-hidden="true"
-              />
-            </Button>
-          </div>
+          {/* Spacer on mobile */}
+          <div className="flex-1 sm:hidden" />
+
+          {/* Theme Toggle */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleTheme}
+            className={`h-9 w-9 rounded-full hover:scale-110 active:scale-95 transition-all duration-300 ease-out shrink-0 ${
+              spinning ? "animate-spin-once" : ""
+            }`}
+            aria-label="切换主题"
+          >
+            <img
+              src={theme === "dark" ? sunImg : moonImg}
+              alt=""
+              className="h-4 w-4 select-none pointer-events-none"
+              aria-hidden="true"
+            />
+          </Button>
         </div>
       </header>
 
       {/* Main Content */}
       <main className="min-h-0 flex-1 overflow-y-auto scrollbar-hide">
-        <div className="mx-auto max-w-full px-4 sm:px-6 py-6 sm:py-8">
+        <div className="mx-auto max-w-full">
           <Outlet />
         </div>
       </main>

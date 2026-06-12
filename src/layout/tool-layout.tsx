@@ -15,46 +15,45 @@ export function ToolLayout({ icon: Icon, title, description, children }: ToolLay
   const accent = getAccent(location.pathname)
 
   return (
-    <div
-      className="space-y-6 w-full mx-auto animate-fade-in-up"
-      style={{
-        "--accent-color": accent,
-        "--accent-bg": `${accent} / 0.1`,
-        "--accent-border": `${accent} / 0.2`,
-        "--accent-ring": `${accent} / 0.3`,
-      } as React.CSSProperties}
-    >
-      {/* Page Header */}
-      <div className="flex items-center gap-2 pb-2">
-        <div className="flex items-center gap-2 flex-1 min-w-0">
-          <div
-            className="p-3 rounded-xl shrink-0"
-            style={{ backgroundColor: `hsl(${accent} / 0.1)` }}
+    <div className="w-full mx-auto animate-fade-in-up px-4 sm:px-6 py-6 sm:py-8 pt-0">
+      {/* Accent Gradient Header */}
+      <div
+        className="relative -mx-4 sm:-mx-6 px-4 sm:px-6 py-6 mb-6 overflow-hidden"
+        style={{
+          background: `linear-gradient(135deg, hsl(${accent}), hsl(${accent} / 0.6))`,
+        }}
+      >
+        {/* Decorative blobs */}
+        <div className="deco-blob top-0 right-0 w-64 h-64 bg-white/5 -translate-y-1/2 translate-x-1/4" />
+        <div className="deco-blob bottom-0 left-1/4 w-32 h-32 bg-white/5" />
+        <div className="deco-blob top-1/2 right-1/3 w-20 h-20 bg-white/5" />
+
+        <div className="flex items-center gap-3 relative z-10">
+          <div className="p-3 rounded-xl bg-white/20 backdrop-blur-sm shrink-0">
+            <Icon className="h-6 w-6 text-white" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h1 className="text-xl font-bold text-white truncate">{title}</h1>
+            <p className="text-sm text-white/80 mt-0.5 truncate">{description}</p>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            asChild
+            className="bg-white/90 hover:bg-white text-gray-800 rounded-full shrink-0"
           >
-            <Icon
-              className="h-5 w-5"
-              style={{ color: `hsl(${accent})` }}
-            />
-          </div>
-          <div className="min-w-0">
-            <h1 className="text-xl font-bold tracking-tight truncate">{title}</h1>
-            <p
-              className="text-sm mt-0.5 truncate"
-              style={{ color: `hsl(${accent} / 0.8)` }}
-            >
-              {description}
-            </p>
-          </div>
+            <Link to="/" className="flex items-center gap-1.5">
+              <ArrowLeft className="h-4 w-4" />
+              <span className="hidden sm:inline">返回</span>
+            </Link>
+          </Button>
         </div>
-        <Button variant="outline" size="sm" asChild className="shrink-0">
-          <Link to="/" className="flex items-center gap-1.5">
-            <ArrowLeft className="h-4 w-4" />
-            <span>返回</span>
-          </Link>
-        </Button>
       </div>
 
-      {children}
+      {/* Tool Content */}
+      <div className="space-y-6">
+        {children}
+      </div>
     </div>
   )
 }
