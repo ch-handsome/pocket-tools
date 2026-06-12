@@ -15,7 +15,7 @@ export function ToolLayout({ icon: Icon, title, description, children }: ToolLay
   const accent = getAccent(location.pathname)
 
   return (
-    <div className="w-full mx-auto animate-fade-in-up px-4 sm:px-6 py-6 sm:py-8 pt-0">
+    <div className="w-full mx-auto animate-fade-in-up px-4 sm:px-6 pb-6 sm:pb-8">
       {/* Accent Gradient Header */}
       <div
         className="relative -mx-4 sm:-mx-6 px-4 sm:px-6 py-6 mb-6 overflow-hidden"
