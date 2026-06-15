@@ -132,7 +132,6 @@ export default function ImageCompressTool() {
                 max={100}
                 value={quality}
                 onChange={(e) => setQuality(Number(e.target.value))}
-                className="px-0"
               />
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>文件更小</span>
