@@ -160,7 +160,7 @@ export default function JsonTool() {
 
   return (
     <ToolLayout icon={FileJson} title="JSON 格式化" description="格式化美化 · 树形查看 · 语法错误提示">
-      <div className="rounded-lg border overflow-hidden h-[calc(100vh-240px)]">
+      <div className="rounded-lg border overflow-hidden h-[calc(100vh-205px)]">
         <ResizablePanelGroup orientation={isMobile ? "vertical" : "horizontal"} className="h-full">
           {/* ===== Left/Top Panel: Input ===== */}
           <ResizablePanel defaultSize={40} minSize={20}>
