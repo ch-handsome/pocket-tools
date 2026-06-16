@@ -54,15 +54,15 @@ export const TOOL_ACCENTS: Record<string, ToolConfig> = {
   },
   "/json": {
     path: "/json",
-    title: "JSON 格式化",
+    title: "JSON工具",
     description: "格式化、压缩JSON，语法错误提示",
     icon: FileJson,
     hue: 271, sat: 91, light: 65, // violet-500
   },
-  "/image-compress": {
-    path: "/image-compress",
-    title: "图片压缩",
-    description: "上传图片，调节压缩质量，实时预览",
+  "/image": {
+    path: "/image",
+    title: "图片工具",
+    description: "图片压缩与裁剪，质量调节，比例裁切",
     icon: Image,
     hue: 330, sat: 81, light: 60, // pink-500
   },

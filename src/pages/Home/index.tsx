@@ -64,7 +64,7 @@ export default function Home() {
             />
           </h2>
           <p className="max-w-md mx-auto text-sm sm:text-base mb-6 mt-3" style={{ color: '#a78bfa' }}>
-            {import.meta.env.VITE_APP_DESCRIPTION || "精选开发工具集合，快速完成日常任务"}
+            {import.meta.env.VITE_APP_DESCRIPTION}
           </p>
           <button
             onClick={handleRecommend}

@@ -6,7 +6,7 @@ import TextTool from "@/pages/TextTool/index"
 import TimeTool from "@/pages/TimeTool/index"
 import QrCodeTool from "@/pages/QrCodeTool/index"
 import JsonTool from "@/pages/JsonTool/index"
-import ImageCompressTool from "@/pages/ImageCompressTool/index"
+import ImageTool from "@/pages/ImageTool/index"
 import PasswordTool from "@/pages/PasswordTool/index"
 import BaseConverterTool from "@/pages/BaseConverterTool/index"
 
@@ -20,7 +20,7 @@ const router = createHashRouter([
       { path: "/time", element: <TimeTool /> },
       { path: "/qrcode", element: <QrCodeTool /> },
       { path: "/json", element: <JsonTool /> },
-      { path: "/image-compress", element: <ImageCompressTool /> },
+      { path: "/image", element: <ImageTool /> },
       { path: "/password", element: <PasswordTool /> },
       { path: "/base-converter", element: <BaseConverterTool /> },
     ],
